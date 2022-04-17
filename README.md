@@ -1,3 +1,3 @@
-# DateNanoTimes.jl
+# DateTimeNanos.jl
 
-#### DateNanoTime is a nanosecond resolved DateTime type
+##### DateTimeNano is a nanosecond resolved DateTime type
