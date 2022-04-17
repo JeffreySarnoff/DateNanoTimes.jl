@@ -1,2 +1,2 @@
-using DateTimeNanos, Test
+using DateNanoTimes, Test
 
