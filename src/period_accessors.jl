@@ -1,27 +1,15 @@
-year(x::DateNanoTime) = year(date(x))
-quarter(x::DateNanoTime) = value(Quarter(date(x)))
-month(x::DateNanoTime) = month(date(x))
-week(x::DateNanoTime) = week(date(x))
-day(x::DateNanoTime) = day(date(x))
+for period in (:Year, :Quarter, :Month, :Week, :Day)
+    accessor = Symbol(lowercase(string(period)))
+    @eval begin
+        Dates.$accessor(td::DateNanoTime) = $accessor(td.date)
+        Dates.$period(td::DateNanoTime) = $period($accessor(td.date))
+    end
+end
 
-hour(x::DateNanoTime) = hour(time(x))
-minute(x::DateNanoTime) = minute(time(x))
-second(x::DateNanoTime) = second(time(x))
-millisecond(x::DateNanoTime) = millisecond(time(x))
-microsecond(x::DateNanoTime) = microsecond(time(x))
-nanosecond(x::DateNanoTime) = nanosecond(time(x))
-
-Year(x::DateNanoTime) = Year(year(x))
-Quarter(x::DateNanoTime) = Quarter(date(x))
-Month(x::DateNanoTime) = Month(month(x))
-Week(x::DateNanoTime) = Week(week(x))
-Day(x::DateNanoTime) = Day(day(x))
-
-Hour(x::DateNanoTime) = Hour(hour(x))
-Minute(x::DateNanoTime) = Minute(minute(x))
-Second(x::DateNanoTime) = Second(second(x))
-Millisecond(x::DateNanoTime) = Millisecond(millisecond(x))
-Microsecond(x::DateNanoTime) = Microsecond(microsecond(x))
-Nanosecond(x::DateNanoTime) = Nanosecond(nanosecond(x))
-
-                                        
+for period in (:Hour, :Minute, :Second, :Millisecond, :Microsecond, :Nanosecond)
+    accessor = Symbol(lowercase(string(period)))
+    @eval begin
+        Dates.$accessor(td::DateNanoTime) = $accessor(td.time)
+        Dates.$period(td::DateNanoTime) = $period($accessor(td.time))
+    end
+end
