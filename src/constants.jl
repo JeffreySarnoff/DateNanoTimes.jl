@@ -1,3 +1,8 @@
+const DateGrains = (:Day, :Week, :Month, :Quarter, :Year)
+const TimeGrains = (:Nanosecond, :Microsecond, :Millisecond,:Second, :Minute: :Hour)
+const TimeDayGrains = (:Nanosecond, :Microsecond, :Millisecond, :Second, :Minute: :Hour, :Day)
+const DateTimeGrains = (:Millisecond, :Second, :Minute: :Hour, :Day, :Week, :Month, :Quarter, :Year)
+
 const Time0 = Time(0)
 const Date0 = Date(0)
 
