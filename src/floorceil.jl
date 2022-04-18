@@ -29,7 +29,6 @@ rollinto(x::Date, ::Type{Day}) = false
 rollinto(x::Date, ::Type{Month}) = day(x) / daysinmonth(x) >= 0.5
 rollinto(x::Date, ::Type{Year}) = month(x) === 12 && day(x) > 15
 
-
 function nanoseconds(x::Time, ::Type{Week})
     deltadays = value(x - firstdayofweek(x))
     NanosecondsPerWeek * week(x) + NanosecondsPerDay * deltadays
