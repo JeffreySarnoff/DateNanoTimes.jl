@@ -25,6 +25,10 @@ rollinto(x::Time, ::Type{Second}) = nanoseconds(x) >= 60 * 1_000 * 1_000 * 500
 rollinto(x::Time, ::Type{Minute}) = nanoseconds(x) >= 60 * 60 * 1_000 * 1_000 * 500
 rollinto(x::Time, ::Type{Hour}) = nanoseconds(x) >= 24 * 60 * 60 * 1_000 * 1_000 * 500
 
+rollinto(x::Date, ::Type{Day}) = false
+rollinto(x::Date, ::Type{Month}) = day(x) / daysinmonth(x) >= 0.5
+rollinto(x::Date, ::Type{Year}) = month(x) === 12 && day(x) > 15
+
 
 function nanoseconds(x::Time, ::Type{Week})
     deltadays = value(x - firstdayofweek(x))
@@ -47,4 +51,3 @@ nanoseconds(x::Time, ::Type{Nanosecond}) = nanosecond(x)
 for T in TimeAndDayGrains
   @eval Nanoseconds(x::Time, ::Type{$T}) = Nanosecond(nanoseconds(x, $T))
 end
-
