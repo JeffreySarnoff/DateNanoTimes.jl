@@ -10,9 +10,21 @@ for P in Symbol.(subtypes(TimePeriod))
   end
 end
 
-rollinto(x::Time, ::Type{Nanosecond}) = Nanosecond(0)
-rollinto(x::Time, ::Type{Microsecond}) = nanosecond(x) >= 500
-rollinto(x::Time, ::Type{Millisecond}) = nanosecond(x) >= 500
+function Base.ciel(x::Time, ::Type{Hour})
+    if hour(x) == 23 && rollinto(x, Hour)
+        Day(1)
+    else
+        trunc(x, ::Type{$P})
+    end
+end
+
+rollinto(x::Time, ::Type{Nanosecond}) = false
+rollinto(x::Time, ::Type{Microsecond}) = nanosecond(x) >= 1_000 * 500 
+rollinto(x::Time, ::Type{Millisecond}) = nanoseconds(x) >= 1_000 * 1_000 * 500
+rollinto(x::Time, ::Type{Second}) = nanoseconds(x) >= 60 * 1_000 * 1_000 * 500
+rollinto(x::Time, ::Type{Minute}) = nanoseconds(x) >= 60 * 60 * 1_000 * 1_000 * 500
+rollinto(x::Time, ::Type{Hour}) = nanoseconds(x) >= 24 * 60 * 60 * 1_000 * 1_000 * 500
+
 
 function nanoseconds(x::Time, ::Type{Week})
     deltadays = value(x - firstdayofweek(x))
@@ -36,18 +48,3 @@ for T in TimeAndDayGrains
   @eval Nanoseconds(x::Time, ::Type{$T}) = Nanosecond(nanoseconds(x, $T))
 end
 
-    Nanoseconds(x::Time, ::Type{Second)) = Nanosecond(nanoseconds(x, Second))
-Nanoseconds(x::Time, ::Type(M)) = Nanosecond(nanoseconds(x, Second))
-Nanoseconds(x::Time, ::Type{Second)) = Nanosecond(nanoseconds(x, Second))
-Nanoseconds(x::Time, ::Type{Millisecond)) = Nanosecond(nanoseconds(x, Millisecond))
-Nanoseconds(x::Time, ::Type{Microsecond)) = Nanosecond(nanoseconds(x, Millisecond))
-Nanoseconds(x::Time, ::Type{Nanosecond)) = Nanosecond(nanoseconds(x))
-
-Nanoseconds(x::Time, ::Type{Millisecond)) = Nanosecond(nanoseconds(x, Millisecond))
-
-nanoseconds(x::Time, ::Type{Microsecond)) = 
-    NanosecondsPerMicrosecond * microsecond(x) + nanosecond(x)
-
-Nanoseconds(x::Time, ::Type{Microsecond)) = Nanosecond(nanoseconds(x, Microsecond))
-
-for (P,p) in ((M
