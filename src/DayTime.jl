@@ -31,14 +31,23 @@ function typesof(x::Dates.CompoundPeriod)
      NamedTuple{(syms...), NTuple{Period, length(syms)}}
  end
         
-Base.:(+)(x::DaysTime, y::CompoundPeriod) = DaysTime(CompoundPeriod(x) + y)
-Base.:(+)(x::CompoundPeriod, y::DaysTime) = y + x
-Base.:(-)(x::DaysTime, y::CompoundPeriod) = DaysTime(CompoundPeriod(x) - y)
+Base.:(+)(x::DaysTime, y::Dates.CompoundPeriod) = DaysTime(Dates.CompoundPeriod(x) + y)
+Base.:(+)(x::Dates.CompoundPeriod, y::DaysTime) = y + x
+Base.:(-)(x::DaysTime, y::Dates.CompoundPeriod) = DaysTime(Dates.CompoundPeriod(x) - y)
 
-ntargs(x::CompoundPeriod) = ntargs(x.periods)
+function periods(x::Dates.CompoundPeriod)
+
+end
         
-function ntargs(x::Vector{Period})
-    syms = Tuple(map(x->Symbol(typeof(x)), x))
+function namedtuple(x::Dates.CompoundPeriod)
+    nt = nttype(x)
+    nt(Tuple(x.periods))
+end
+ 
+nttype(x::Dates.CompoundPeriod) = nttype(x.periods)
+        
+function nttype(x::Vector{Period})
+    syms = Tuple(map(x->Symbol(lowercase(String(typeof(x)))), x))
     t = Tuple(typeof.(x))
     typs = Tuple{t...}
     NamedTuple{syms, typs}
