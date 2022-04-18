@@ -1,6 +1,7 @@
 #=
    Dates supports `floor` and `ceil` for Date and DateTime only.
    Here are `floor` and `ceil` for Time and DateNanoTime.
+   and functions to get the time modulo a TimePeriod in nanoseconds
 =#
 
 for P in Symbol.(subtypes(TimePeriod))
