@@ -51,3 +51,7 @@ nanoseconds(x::Time, ::Type{Nanosecond}) = nanosecond(x)
 for T in TimeAndDayGrains
   @eval Nanoseconds(x::Time, ::Type{$T}) = Nanosecond(nanoseconds(x, $T))
 end
+
+nanoseconds(x::Time) = nanoseconds(x, Hour)
+Nanoseconds(x::Time) = Nanoseconds(x, Hour)
+   
