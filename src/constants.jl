@@ -1,7 +1,39 @@
-const DateGrains = (:Day, :Week, :Month, :Quarter, :Year)
-const TimeGrains = (:Nanosecond, :Microsecond, :Millisecond,:Second, :Minute: :Hour)
-const TimeDayGrains = (:Nanosecond, :Microsecond, :Millisecond, :Second, :Minute: :Hour, :Day)
+const DateGrains = Tuple(Symbol.(subtypes(DatePeriod)))
+const TimeGrains = Tuple(Symbol.(subtypes(TimePeriod)))
+const DateTimeGrains = (TimeGrains[3:end]..., DateGrains...)
+const TimeAndDayGrains = (TimeGrains..., :Day)
+const TimeAndDateGrains = (TimeGrains..., DateGrains...)
+
+const DateValues = Symbol.(lowercase.(String.(DateGrains)))
+const TimeValues = Symbol.(lowercase.(String.(TimeGrains)))
+const DateTimeValues = Symbol.(lowercase.(String.(DateTimeGrains)))
+const TimeAndDayValues = Symbol.(lowercase.(String.(TimeAndDayGrains)))
+const TimeAndDateValues = Symbol.(lowercase.(String.(TimeAndDateGrains)))
+
+const DateGrainsDays = Symbol.(String.(DateGrains) .* 's')
+const TimeGrainsNanoseconds = Symbol.(String.(TimeGrains) .* 's')
+const DateTimeGrainsMilliseconds = Symbol.(String.(DateTimeGrains) .* 's')
+const TimeAndDayGrainsNanoseconds = Symbol.(String.(TimeAndDayGrains) .* 's')
+const TimeAndDateGrainsNanoseconds = Symbol.(String.(TimeAndDateGrains) .* 's')
+
+const DateValuesDays = Symbol.(String.(DateValues) .* 's')
+const TimeValuesNanoseconds = Symbol.(String.(TimeValues) .* 's')
+const DateTimeValuesMilliseconds = Symbol.(String.(DateTimeValues) .* 's')
+const TimeAndDayValuesNanoseconds = Symbol.(String.(TimeAndDayValues) .* 's')
+const TimeAndDateValuesNanoseconds = Symbol.(String.(TimeAndDateValues) .* 's')
+
+(:Nanosecond, :Microsecond, :Millisecond,:Second, :Minute: :Hour)
 const DateTimeGrains = (:Millisecond, :Second, :Minute: :Hour, :Day, :Week, :Month, :Quarter, :Year)
+const DayTimeGrains = (:Nanosecond, :Microsecond, :Millisecond, :Second, :Minute: :Hour, :Day)
+
+const TimeGrainValues = Symbol.(lowercase.(String.(TimeGrains))))
+const DateGrainValues = Symbol.(lowercase.(String.(DateGrains))))
+const DateTimeGrainValues = Symbol.(lowercase.(String.(DateGrains))))
+
+(:day, :week, :month, :quarter, :year)
+const TimeGrainValues = (:nanosecond, :microsecond, :millisecond,:second, :minute: :hour)
+const DateTimeGrainValues = (:millisecond, :second, :minute: :hour, :day, :week, :month, :quarter, :year)
+const DayTimeGrainValues = (:nanosecond, :microsecond, :millisecond, :second, :minute: :hour, :day)
 
 const Time0 = Time(0)
 const Date0 = Date(0)
