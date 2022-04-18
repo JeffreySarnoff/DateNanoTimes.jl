@@ -37,15 +37,16 @@ const DayTimeGrainValues = (:nanosecond, :microsecond, :millisecond, :second, :m
 
 const Time0 = Time(0)
 const Date0 = Date(0)
-
+const Rata0 = Date(rata2datetime(0))
+  
 # each epoch (at Time0) as a DateTime
 const RATAasDateTime = rata2datetime(0)
 const UNIXasDateTime = unix2datetime(0)
-const DATE0asDateTime = DateTime(Date0_
+const DATE0asDateTime = DateTime(Date0)
 
 # each epoch (at Time0) as a Date
 const RATAasDate = Date(RATAasDateTime)
-const UNIXasDate = Date(UNIXasDateTime))
+const UNIXasDate = Date(UNIXasDateTime)
 const DATE0asDate = Date0
 
 # epochs to/from Rata Die
