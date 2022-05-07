@@ -16,8 +16,13 @@ nbits(int::Integer) = ndigits(int, base=2)
     Our perspective holds these acts to occur within identical
     (i.e. duration matched) periods.
     
-    While the adding of some minutes to the minutes of time told
-    may overflow, taking participatory minutes and matching
-    or overmatching them to a proper fork.
+    While adding additional minutes to those already present,
+    or instead, removing some minutes from those already present,
+    we will do something inviting.
+
+    Both addition and subtraction are at play, and we want
+    the day to stay theirs. We give of our own focus and
+    allow other's adventures to brighten the shared time.
 =#
+
 
