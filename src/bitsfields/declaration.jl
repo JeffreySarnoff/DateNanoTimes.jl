@@ -7,3 +7,17 @@
 
 
 =#
+
+# how many bits does the value of this `int`?
+nbits(int::Integer) = ndigits(int, base=2)
+
+#=
+    Date|Time Periods may be either added to or subtracted from.
+    Our perspective holds these acts to occur within identical
+    (i.e. duration matched) periods.
+    
+    While the adding of some minutes to the minutes of time told
+    may overflow, taking participatory minutes and matching
+    or overmatching them to a proper fork.
+=#
+
