@@ -8,6 +8,7 @@ version = "0.1.0"
 
 [deps]
 Dates = "ade2ca70-3891-5945-98fb-dc099432e06a"
+BitsFields = "f44e861a-3f8a-5c62-b78f-266521f8af5d"
 
 [compat]
 julia = "1.7"
