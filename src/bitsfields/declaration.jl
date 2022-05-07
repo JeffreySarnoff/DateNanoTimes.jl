@@ -9,7 +9,7 @@
 =#
 
 # how many bits does the value of this `int`?
-nbits(int::Integer) = ndigits(int, base=2)
+ints_to_bits(int::Integer) = ndigits(int, base=2)
 
 #=
     Date|Time Periods may be either added to or subtracted from.
@@ -25,4 +25,10 @@ nbits(int::Integer) = ndigits(int, base=2)
     allow other's adventures to brighten the shared time.
 =#
 
+The bits were used to show in radix 2 a value known from radix 10.
+Still, to have a safe and clear path out of here, you need more
+than the food you are eating.  For example, to have proper
+cover for more of a period, also have proper cover for less
+of a period.  One should have the k agreed-upon cards and
+what additional may reenforce the intent we bring for this.
 
